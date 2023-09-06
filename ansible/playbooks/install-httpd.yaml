@@ -1,0 +1,14 @@
+---
+- name: Install Apache
+  hosts: instances
+  become: yes
+  tasks:
+    - yum:
+        name:
+          - httpd
+        state: latest
+    - service:
+        name: httpd
+        state: started
+        enabled: yes
+    - raw: "echo This is $(hostname -f) | sudo tee /var/www/html/index.html"

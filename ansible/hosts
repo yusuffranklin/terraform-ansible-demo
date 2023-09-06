@@ -1,0 +1,6 @@
+[instances]
+node-01 ansible_host=54.169.119.228
+node-02 ansible_host=18.143.147.103
+
+[load-balancer]
+nginx ansible_host=54.169.122.6

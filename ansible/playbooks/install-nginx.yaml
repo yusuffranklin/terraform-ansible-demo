@@ -1,0 +1,16 @@
+---
+- name: Install Nginx
+  hosts: load-balancer
+  become: yes
+  tasks:
+    - command: amazon-linux-extras install nginx1 -y
+      args:
+        creates: /sbin/nginx
+    - service:
+        name: nginx
+        state: started
+        enabled: yes
+    - copy:
+        src: /root/load-balancer.cfg
+        dest: /etc/nginx/load-balancer.cfg
+    - command: mv /etc/nginx/default.cfg /etc/nginx/default.cfg.disabled
